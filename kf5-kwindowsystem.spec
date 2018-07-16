@@ -18,10 +18,12 @@ BuildRequires:	Qt5Widgets-devel >= %{qtver}
 BuildRequires:	Qt5X11Extras-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
+BuildRequires:	libxcb-devel
 BuildRequires:	pkgconfig
 BuildRequires:	qt5-linguist >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	xcb-util-keysyms-devel
 BuildRequires:	xz
 Requires:	kf5-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
