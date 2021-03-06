@@ -1,15 +1,15 @@
-%define		kdeframever	5.67
+%define		kdeframever	5.79
 %define		qtver		5.9.0
 %define		kfname		kwindowsystem
 
 Summary:	Access to the windowing system
 Name:		kf5-%{kfname}
-Version:	5.67.0
+Version:	5.79.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	b1d0b95573ff7cfe1ff4d468e7f9fed6
+# Source0-md5:	61e99965def3149523d985361daeeeb5
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= %{qtver}
@@ -85,8 +85,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 %attr(755,root,root) %ghost %{_libdir}/libKF5WindowSystem.so.5
 %attr(755,root,root) %{_libdir}/libKF5WindowSystem.so.*.*
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/org.kde.kwindowsystem.platforms/KF5WindowSystemWaylandPlugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/org.kde.kwindowsystem.platforms/KF5WindowSystemX11Plugin.so
+%dir %{_libdir}/qt5/plugins/kf5/kwindowsystem
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kwindowsystem/KF5WindowSystemWaylandPlugin.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kwindowsystem/KF5WindowSystemX11Plugin.so
+%{_datadir}/qlogging-categories5/kwindowsystem.renamecategories
 %{_datadir}/qlogging-categories5/kwindowsystem.categories
 
 %files devel
