@@ -21,7 +21,7 @@ BuildRequires:	libxcb-devel
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
 BuildRequires:	qt5-linguist >= %{qtver}
-BuildRequires:	rpmbuild(macros) >= 1.164
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xcb-util-keysyms-devel
 BuildRequires:	xcb-util-wm-devel
