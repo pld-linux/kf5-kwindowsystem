@@ -1,24 +1,23 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.114
+%define		kdeframever	5.249.0
 %define		qtver		5.15.2
 %define		kfname		kwindowsystem
 
 Summary:	Access to the windowing system
 Name:		kf5-%{kfname}
-Version:	5.114.0
-Release:	1
+Version:	5.249.0
+Release:	0.1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	1f29f0749620d4aa8a4a5781af3f7e23
+Source0:	https://download.kde.org/unstable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
+# Source0-md5:	9eda8e81608176104fe81c1659e18387
 URL:		http://www.kde.org/
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5Gui-devel >= %{qtver}
-BuildRequires:	Qt5Test-devel >= %{qtver}
-BuildRequires:	Qt5Widgets-devel >= %{qtver}
-BuildRequires:	Qt5X11Extras-devel >= %{qtver}
+BuildRequires:	Qt6Core-devel >= %{qtver}
+BuildRequires:	Qt6Gui-devel >= %{qtver}
+BuildRequires:	Qt6Test-devel >= %{qtver}
+BuildRequires:	Qt6Widgets-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	libxcb-devel
@@ -32,13 +31,12 @@ BuildRequires:	xcb-util-wm-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXfixes-devel
 BuildRequires:	xz
-Requires:	Qt5Gui >= %{qtver}
-Requires:	Qt5Widgets >= %{qtver}
-Requires:	Qt5X11Extras >= %{qtver}
+Requires:	Qt6Gui >= %{qtver}
+Requires:	Qt6Widgets >= %{qtver}
 Requires:	kf5-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt5dir		%{_libdir}/qt5
+%define		qt6dir		%{_libdir}/qt6
 
 %description
 Convenience access to certain properties and features of the windowing
@@ -59,7 +57,7 @@ Summary:	Header files for %{kfname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kfname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	Qt5Widgets-devel >= %{qtver}
+Requires:	Qt6Widgets-devel >= %{qtver}
 
 %description devel
 Header files for %{kfname} development.
@@ -98,16 +96,22 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kfname}5_qt.lang
 %defattr(644,root,root,755)
 %doc README.md
-%ghost %{_libdir}/libKF5WindowSystem.so.5
-%attr(755,root,root) %{_libdir}/libKF5WindowSystem.so.*.*
-%dir %{_libdir}/qt5/plugins/kf5/kwindowsystem
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kwindowsystem/KF5WindowSystemX11Plugin.so
-%{_datadir}/qlogging-categories5/kwindowsystem.renamecategories
-%{_datadir}/qlogging-categories5/kwindowsystem.categories
+%ghost %{_libdir}/libKF6WindowSystem.so.6
+%attr(755,root,root) %{_libdir}/libKF6WindowSystem.so.*.*
+%dir %{_libdir}/qt6/plugins/kf6/kwindowsystem
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/kwindowsystem/KF6WindowSystemX11Plugin.so
+%{_datadir}/qlogging-categories6/kwindowsystem.renamecategories
+%{_datadir}/qlogging-categories6/kwindowsystem.categories
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/kwindowsystem/KF6WindowSystemKWaylandPlugin.so
+%dir %{_libdir}/qt6/qml/org/kde/kwindowsystem
+%{_libdir}/qt6/qml/org/kde/kwindowsystem/KWindowSystem.qmltypes
+%{_libdir}/qt6/qml/org/kde/kwindowsystem/kde-qmlmodule.version
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/kwindowsystem/libKWindowSystem.so
+%{_libdir}/qt6/qml/org/kde/kwindowsystem/qmldir
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF5/KWindowSystem
-%{_libdir}/cmake/KF5WindowSystem
-%{_libdir}/libKF5WindowSystem.so
-%{qt5dir}/mkspecs/modules/qt_KWindowSystem.pri
+%{_includedir}/KF6/KWindowSystem
+%{_libdir}/cmake/KF6WindowSystem
+%{_libdir}/libKF6WindowSystem.so
+%{_pkgconfigdir}/KF6WindowSystem.pc
